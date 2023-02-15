@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testngSamples.TableXpath">
+      <class name="testNgAssignments.DataProviderClassForPayroll">
         <methods>
-          <include name="clientDetailsOfTom"/>
+          <include name="verificationOfUnSuccessfullLogin" invocation-numbers="0 1 2"/>
           <include name="beforeMethod"/>
           <include name="afterMethod"/>
         </methods>
-      </class> <!-- testngSamples.TableXpath -->
+      </class> <!-- testNgAssignments.DataProviderClassForPayroll -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

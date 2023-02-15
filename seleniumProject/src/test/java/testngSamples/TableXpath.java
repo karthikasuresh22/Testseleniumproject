@@ -2,11 +2,13 @@ package testngSamples;
 
 import org.testng.annotations.Test;
 
+import dev.failsafe.Timeout;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -79,13 +81,29 @@ public class TableXpath {
 	  Boolean actual=tom.isDisplayed();
 	  Assert.assertTrue(actual);
   }
+  
+  @Test
+  public void tableCompletePrint() {
+	  WebElement userName=driver.findElement(By.xpath("//input[@id='loginform-username']"));
+	  userName.sendKeys("carol");
+	  WebElement password=driver.findElement(By.xpath("//input[@id='loginform-password']"));
+	  password.sendKeys("1q2w3e4r");
+	  WebElement login=driver.findElement(By.xpath("//button[text()='Login']"));
+	  login.click();
+	  WebElement clientButton=driver.findElement(By.xpath("//a[text()='Clients']"));
+	  // clientButton.click();
+	  driver.navigate().to("https://qabible.in/payrollapp/client/index");
+	  WebElement table=driver.findElement(By.xpath("//table[@class='table table-striped table-bordered']"));
+	  System.out.println(table.getText());
+  }
   @BeforeMethod
   public void beforeMethod() {
 	  WebDriverManager.chromedriver().setup();
 	  driver=new ChromeDriver();
 	  driver.get("https://qabible.in/payrollapp/");
 	  driver.manage().window().maximize();
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	 // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	  driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
   }
 
   @AfterMethod
